@@ -6,12 +6,6 @@ Este repositório reúne slides desenvolvidos em Markdown, com versões em PDF p
 
 ---
 
-## 📚 Estrutura
-
-As aulas estão organizadas pelas pastas pdf e markdown
-
----
-
 ## 📖 Conteúdo
 
 * Aula 01 — Introdução ao Estudo de Equações Diferenciais Ordinárias

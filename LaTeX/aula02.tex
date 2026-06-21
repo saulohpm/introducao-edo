@@ -1,0 +1,414 @@
+\documentclass[11pt, aspectratio=169, xcolor=table]{beamer}
+
+% ===================== PACOTES =====================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{newtxtext}
+\usepackage{newtxmath}
+\usepackage{tikz}
+\usepackage{amsmath, amssymb}
+\newcommand{\dd}{\mathrm{d}}
+\usepackage{booktabs}
+\usepackage{bookmark}
+
+% ===================== REMOVE ELEMENTOS PADRÃO DO BEAMERER =====================
+\setbeamertemplate{navigation symbols}{}
+
+% ===================== CORES E FONTES =====================
+\definecolor{bgcolor}{RGB}{20, 20, 24}
+\definecolor{accent}{RGB}{214, 165, 113}
+\definecolor{dotoff}{RGB}{70, 70, 76}
+
+\setbeamercolor{background canvas}{bg=bgcolor}
+\setbeamercolor{normal text}{fg=white!92!black}
+\setbeamercolor{title}{fg=white}
+\setbeamercolor{frametitle}{fg=accent}
+\setbeamercolor{footline}{fg=gray!60}
+\setbeamercolor{itemize item}{fg=accent}
+\setbeamercolor{itemize subitem}{fg=accent!70!white}
+\setbeamercolor{progress}{bg=bgcolor}
+\setbeamercolor{footnum}{bg=bgcolor}
+\setbeamertemplate{itemize item}{\textbullet}
+
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamerfont{footline}{size=\tiny}
+
+\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
+
+% ===================== TÍTULO DO SLIDE =====================
+\setbeamertemplate{frametitle}{
+  \vspace{0.5cm}
+  \hspace{0.4cm}\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle\\
+  \vspace{0.12cm}
+  \hspace{0.4cm}\textcolor{accent}{\rule{2.5cm}{0.6pt}}
+}
+
+% ===================== RODAPÉ =====================
+\setbeamertemplate{footline}{%
+  \begin{beamercolorbox}[wd=\paperwidth, ht=0.09cm, dp=0pt]{progress}
+    \begin{tikzpicture}
+      \fill[dotoff] (0,0) rectangle (16,0.09);
+      \ifnum\inserttotalframenumber>0
+        \pgfmathsetmacro{\prog}{16*\insertframenumber/\inserttotalframenumber}
+        \fill[accent] (0,0) rectangle (\prog,0.09);
+      \fi
+    \end{tikzpicture}
+  \end{beamercolorbox}%
+  \vskip 2pt
+  \begin{beamercolorbox}[wd=\paperwidth, ht=2.4ex, dp=1.2ex, right]{footnum}
+    \usebeamerfont{footline}\color{gray!60}\insertframenumber\,/\,\inserttotalframenumber\hspace{0.8em}
+  \end{beamercolorbox}%
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% ===================== CUSTOMIZAÇÃO DE BLOCOS =====================
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamercolor{block title}{bg=dotoff, fg=accent}
+\setbeamercolor{block body}{bg=bgcolor!90!white, fg=white!92!black}
+
+\setbeamercolor{block title alerted}{bg=accent!60!black, fg=white}
+\setbeamercolor{block body alerted}{bg=bgcolor!95!white, fg=white!92!black}
+
+% ===================== CAIXA DE DESTAQUE =====================
+\newcommand{\notebox}[1]{%
+  \begin{center}
+  \begin{tabular}{@{}l@{\hspace{0.35cm}}p{0.82\textwidth}@{}}
+    \textcolor{accent}{\rule{2pt}{0.55cm}} & \itshape\small\color{white!88!black} #1
+  \end{tabular}
+  \end{center}%
+}
+
+\title{Introdução ao Estudo de Equações Diferenciais Ordinárias}
+\author{Saulo Henrique}
+
+\usefonttheme[onlymath]{serif}
+
+\begin{document}
+
+% ===================== SLIDE DE TÍTULO =====================
+\begin{frame}[plain]
+  \begin{center}
+    \vspace{1.2cm}
+    {\Huge \textbf{\textcolor{white}{Introdução ao Estudo de}}}\\[4pt]
+    {\Huge \textbf{\textcolor{white}{Equações Diferenciais Ordinárias}}}\\[16pt]
+    {\large \textcolor{gray!80}{Curso: Introdução a EDO (Aula 2)}}\\[6pt]
+    {\normalsize \textcolor{accent}{Prof. Saulo Henrique}}
+  \end{center}
+\end{frame}
+
+
+% ===================== CONTEUDO =====================
+\begin{frame}{Objetivos da Aula}
+\begin{itemize}
+  \item Reconhecer e resolver EDOs separáveis pelo método de \textbf{separação de variáveis}
+  \item Resolver EDOs \textbf{lineares de $1^{\text{a}}$ ordem} com o \textbf{fator integrante}
+  \item Resolver EDOs \textbf{homogêneas} via substituição \(v = y/x\)
+  \item Resolver equações de \textbf{Bernoulli} por linearização
+  \item Aplicar cada método em \textbf{modelos matemáticos} reais
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Estrutura do Capítulo 2}
+\centering
+\rowcolors{2}{bgcolor}{dotoff!30!bgcolor}
+\begin{tabular}{lc}
+\textcolor{accent}{\textbf{Método}} & \textcolor{accent}{\textbf{Tipo de EDO}} \\
+\hline
+Separação de variáveis & $y' = g(x)\,h(y)$ \\
+Fator integrante & $y' + p(x)\,y = q(x)$ \\
+Substituição $v = y/x$ & EDO homogênea: $y' = F(y/x)$ \\
+Linearização de Bernoulli & $y' + p(x)\,y = q(x)\,y^n$ \\
+\end{tabular}
+
+\vspace{1.5em}
+\begin{block}{Ideia central}
+Cada método é uma \textbf{estratégia de reconhecimento e transformação}: identificamos a forma da EDO e aplicamos a técnica adequada.
+\end{block}
+\end{frame}
+
+% ==============================================================================
+\section{Separação de Variáveis}
+
+\begin{frame}{Método 1 --- Separação de Variáveis}
+\begin{block}{Quando usar?}
+A EDO deve poder ser escrita na forma:
+\[
+\frac{\dd y}{\dd x} = g(x)\cdot h(y)
+\]
+isto é, o lado direito é um \textbf{produto} de uma função apenas de \(x\) por uma função apenas de \(y\).
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Como funciona?}
+Dividindo ambos os lados por \(h(y)\) (supondo \(h(y)\neq 0\)):
+\[
+\frac{1}{h(y)}\,\dd y = g(x)\,\dd x
+\]
+Integrando dos dois lados:
+\[
+\int \frac{1}{h(y)}\,\dd y = \int g(x)\,\dd x + C
+\]
+\end{block}
+\end{frame}
+
+\begin{frame}{Exemplo 1 --- Com PVI}
+\[
+\frac{\dd y}{\dd x} = xy^2,\quad y(0)=1
+\]
+
+\textbf{1. Separar e Integrar:}
+\[
+\int y^{-2}\,\dd y = \int x\,\dd x
+\;\Longrightarrow\;
+-\frac{1}{y} = \frac{x^2}{2} + C_1
+\]
+
+\textbf{2. Solução Geral (isolando $y$):}
+\[
+\frac{1}{y} = C - \frac{x^2}{2} = \frac{2C-x^2}{2}
+\;\Longrightarrow\;
+y = \frac{2}{C-x^2}
+\]
+\end{frame}
+
+\begin{frame}
+\textbf{3. Aplicar C.I.} \(y(0)=1\):
+\[
+1 = \frac{2}{C-0} \;\Longrightarrow\; C=2
+\]
+
+\textbf{Solução Particular:}
+\[
+\boxed{y = \frac{2}{2-x^2}} \quad \text{válida para } x \in (-\sqrt{2}, \sqrt{2})
+\]
+\end{frame}
+
+\begin{frame}{Aplicação --- Decaimento Radioativo}
+A taxa de variação da quantidade $N$ de material é proporcional à quantidade presente:
+\[
+\frac{\dd N}{\dd t} = -\lambda N,\quad N(0)=N_0,\quad \lambda>0
+\]
+\end{frame}
+
+\begin{frame}{Aplicação --- Decaimento Radioativo}
+\textbf{Passos de Resolução:}
+\begin{itemize}
+  \item \textbf{Separar:} $\displaystyle \int \frac{\dd N}{N} = -\int \lambda\,\dd t$
+  \item \textbf{Integrar:} $\ln|N| = -\lambda t + C_1$
+  \item \textbf{Exponencial:} $N(t) = e^{-\lambda t + C_1} = e^{C_1}e^{-\lambda t} = Ce^{-\lambda t}$
+  \item \textbf{C.I.:} $N(0)=N_0 \implies Ce^{0} = N_0 \implies C=N_0$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Solução Final e Interpretação}
+\[
+N(t) = N_0\,e^{-\lambda t}
+\]
+O sinal negativo garante que a população $N$ decresce exponencialmente com o tempo. $\lambda$ é a constante de decaimento.
+\end{block}
+\end{frame}
+
+% ==============================================================================
+\section{Fator Integrante}
+
+\begin{frame}{Método 2 --- Fator Integrante}
+\begin{block}{Quando usar?}
+A EDO é \textbf{linear de $1^{\text{a}}$ ordem} na forma padrão:
+\[
+\frac{\dd y}{\dd x} + p(x)\,y = q(x)
+\]
+onde \(p(x)\) e \(q(x)\) são funções contínuas.
+\end{block}
+
+\begin{alertblock}{Atenção}
+O coeficiente de \(y'\) deve ser obrigatoriamente \(1\) antes de identificar \(p(x)\).
+\end{alertblock}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Fator Integrante e Propriedade}
+Definimos o fator integrante: $\displaystyle \mu(x)=e^{\int p(x)\,\dd x}$
+\\
+Ele é construído para que: $\displaystyle \frac{\dd}{\dd x}\bigl[\mu(x)\,y\bigr] = \mu(x)\left( y' + p(x)y \right)$
+\end{block}
+\end{frame}
+
+\begin{frame}{Exemplo 2 --- Aplicação do Método}
+\textbf{Dada a equação:}
+\[
+\frac{\dd y}{\dd x} - \frac{2}{x}\,y = x^2,\quad x>0
+\]
+\end{frame}
+
+\begin{frame}
+\textbf{1. Identificar e Calcular \(\mu\):}
+\[
+p(x)=-\frac{2}{x} \;\Longrightarrow\; \mu(x)=e^{\int -\frac{2}{x}\,\dd x} = e^{-2\ln x} = x^{-2}
+\]
+
+\textbf{2. Multiplicar a EDO por $\mu=x^{-2}$:}
+\[
+x^{-2}y' - 2x^{-3}y = 1 \;\Longrightarrow\; \frac{\dd}{\dd x}\!\left[x^{-2}y\right] = 1
+\]
+
+\textbf{3. Integrar e Isolar $y$:}
+\[
+x^{-2}y = \int 1\,\dd x + C \;\Longrightarrow\; x^{-2}y = x + C \;\Longrightarrow\; \boxed{y = x^3 + Cx^2}
+\]
+\end{frame}
+
+\begin{frame}{Aplicação --- Resfriamento de Newton}
+A temperatura $T(t)$ de um objeto em um meio com $T_{\text{amb}}$ satisfaz:
+\[
+\frac{\dd T}{\dd t} + k\,T = k\,T_{\text{amb}},\quad T(0)=T_0
+\]
+
+\textbf{Resolução (Linear):}
+\begin{itemize}
+  \item \textbf{Fator Integrante:} $\mu(t) = e^{\int k\,\dd t} = e^{kt}$
+  \item \textbf{Forma Derivada:} $\displaystyle \frac{\dd}{\dd t}\left[ e^{kt}T \right] = e^{kt}(k T_{\text{amb}})$
+  \item \textbf{Integrar:} $e^{kt}T = \int kT_{\text{amb}}e^{kt}\,\dd t + C = T_{\text{amb}}e^{kt} + C$
+  \item \textbf{Isolar e C.I.:} $T(t) = T_{\text{amb}} + Ce^{-kt}$. Usando $T(0)=T_0 \implies C = T_0 - T_{\text{amb}}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{alertblock}{Solução Final}
+\[
+T(t) = T_{\text{amb}} + (T_0 - T_{\text{amb}})\,e^{-kt}
+\]
+Quando $t\to\infty$, $e^{-kt}\to 0$, e $T(t)\to T_{\text{amb}}$, como esperado.
+\end{alertblock}
+\end{frame}
+
+% ==============================================================================
+\section{EDOs Homogêneas}
+
+\begin{frame}{Método 3 --- EDOs Homogêneas}
+\begin{block}{Quando usar?}
+A EDO pode ser escrita na forma:
+\[
+\frac{\dd y}{\dd x} = F\!\left(\frac{y}{x}\right)
+\]
+Formalmente, $f(x,y)$ é homogênea de grau 0 se \(f(tx,ty)=f(x,y)\) para \(t\neq 0\).
+\end{block}
+
+\begin{alertblock}{Substituição-Chave}
+A mudança de variável transforma a EDO não separável em separável:
+\[
+v=\frac{y}{x}\;\Longrightarrow\; y=vx \;\Longrightarrow\; \frac{\dd y}{\dd x} = v + x\,\frac{\dd v}{\dd x}
+\]
+\end{alertblock}
+\end{frame}
+
+\begin{frame}{Exemplo 3 --- EDO Homogênea}
+
+\[
+\frac{\dd y}{\dd x} = \frac{x+y}{x-y} \;\Longrightarrow\; \frac{\dd y}{\dd x} = \frac{1+(y/x)}{1-(y/x)} = F(v)
+\]
+
+\textbf{1. Substituição:}
+\[
+v + x\frac{\dd v}{\dd x} = \frac{1+v}{1-v} \;\Longrightarrow\; x\frac{\dd v}{\dd x} = \frac{1+v}{1-v} - v = \frac{1+v - v(1-v)}{1-v} = \frac{1+v^2}{1-v}
+\]
+
+\textbf{2. Separar Variáveis:}
+\[
+\frac{1-v}{1+v^2}\,\dd v = \frac{\dd x}{x} \;\Longrightarrow\; \left( \frac{1}{1+v^2} - \frac{v}{1+v^2} \right)\,\dd v = \frac{\dd x}{x}
+\]
+\end{frame}
+
+\begin{frame}
+\textbf{3. Integrar e Retornar $v=y/x$:}
+\[
+\arctan(v) - \frac{1}{2}\ln(1+v^2) = \ln|x| + C
+\]
+\[
+\boxed{\arctan(y/x) - \frac{1}{2}\ln(1+(y/x)^2) = \ln|x| + C}
+\]
+\end{frame}
+
+% ==============================================================================
+\section{Equação de Bernoulli}
+
+\begin{frame}{Método 4 --- Equação de Bernoulli}
+\begin{block}{Quando usar?}
+A EDO tem a forma **não linear**:
+\[
+\frac{\dd y}{\dd x} + p(x)\,y = q(x)\,y^n,\quad n\neq 0,1
+\]
+\end{block}
+
+\begin{alertblock}{Como funciona?}
+O objetivo é linearizar a EDO dividindo por $y^n$ e usando a substituição:
+\[
+w = y^{1-n} \;\Longrightarrow\; \frac{\dd w}{\dd x} = (1-n)\,y^{-n}\,\frac{\dd y}{\dd x}
+\]
+\end{alertblock}
+\end{frame}
+
+\begin{frame}
+\begin{block}{EDO Linear Resultante em $w(x)$}
+\[
+\frac{\dd w}{\dd x} + (1-n)\,p(x)\,w = (1-n)\,q(x)
+\]
+Resolve-se por Fator Integrante.
+\end{block}
+\end{frame}
+
+% ==============================================================================
+\section{Exercícios Propostos}
+
+\begin{frame}{Exercícios Propostos}
+1) Resolva as EDOs e, quando indicada, resolva também o PVI:
+\begin{itemize}
+  \item[a)] $\displaystyle \frac{\dd y}{\dd x} = \frac{x}{1+y^2},\quad y(0)=0$
+  \item[b)] $\displaystyle \frac{\dd y}{\dd x} = (2x+1)(3y^2),\quad y(0)=1$
+\end{itemize}
+
+2) Uma cultura bacteriana cresce de acordo com $\frac{\dd B}{\dd t}=kB$. Se $B(0)=500$ e $B(2)=2000$, determine:
+\begin{itemize}
+  \item[a)] A constante $k$.
+  \item[b)] O tempo $t^*$ para que a população dobre pela primeira vez.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Exercícios Propostos}
+3) Resolva pelo método do fator integrante:
+\begin{itemize}
+  \item[a)] $y' + 3y = e^{-x}$
+  \item[b)] $xy' + 2y = x^3\ln x,\quad x>0$ (\textit{atenção à forma padrão})
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Exercícios Propostos}
+4) Considere um circuito RL com tensão constante $V$, onde a corrente $i(t)$ satisfaz:
+\[
+L\frac{\dd i}{\dd t} + Ri = V,\quad i(0)=0
+\]
+\begin{itemize}
+  \item[a)] Determine a expressão para $i(t)$.
+  \item[b)] O que ocorre quando $t\to\infty$?
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Exercícios Propostos}
+5) Verifique que as EDOs são homogêneas e resolva-as:
+\begin{itemize}
+  \item[a)] $\displaystyle \frac{\dd y}{\dd x} = \frac{y-x}{y+x}$
+  \item[b)] $\displaystyle \frac{\dd y}{\dd x} = \frac{x+y}{x-y}$ (Resolvido no Exemplo 3)
+\end{itemize}
+
+6) Resolva as equações de Bernoulli:
+\begin{itemize}
+  \item[a)] $y' + y = y^2$
+  \item[b)] $\displaystyle y' - \frac{y}{x} = \frac{y^3}{x^2},\quad x>0$
+\end{itemize}
+\end{frame}
+
+\end{document}
