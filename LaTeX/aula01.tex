@@ -1,80 +1,8 @@
-\documentclass[11pt, aspectratio=169]{beamer}
-
-% ===================== PACOTES =====================
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage{newtxtext}
-\usepackage{newtxmath}
-\usepackage{tikz}
-\usepackage{amsmath, amssymb}
-
-% ===================== REMOVE ELEMENTOS PADRÃO DO BEAMER =====================
-\setbeamertemplate{navigation symbols}{}
-
-% ===================== CORES =====================
-\definecolor{bgcolor}{RGB}{20, 20, 24}
-\definecolor{accent}{RGB}{214, 165, 113}
-\definecolor{dotoff}{RGB}{70, 70, 76}
-
-\setbeamercolor{background canvas}{bg=bgcolor}
-\setbeamercolor{normal text}{fg=white!92!black}
-\setbeamercolor{title}{fg=white}
-\setbeamercolor{frametitle}{fg=accent}
-\setbeamercolor{footline}{fg=gray!60}
-\setbeamercolor{itemize item}{fg=accent}
-\setbeamercolor{itemize subitem}{fg=accent!70!white}
-\setbeamercolor{progress}{bg=bgcolor}
-\setbeamercolor{footnum}{bg=bgcolor}
-\setbeamertemplate{itemize item}{\textbullet}
-
-\setbeamerfont{frametitle}{series=\bfseries}
-\setbeamerfont{footline}{size=\tiny}
-
-\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
-
-% ===================== TÍTULO DO SLIDE =====================
-\setbeamertemplate{frametitle}{
-  \vspace{0.5cm}
-  \hspace{0.4cm}\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle\\
-  \vspace{0.12cm}
-  \hspace{0.4cm}\textcolor{accent}{\rule{2.5cm}{0.6pt}}
-}
-
-% ===================== RODAPÉ =====================
-\setbeamertemplate{footline}{%
-  \begin{beamercolorbox}[wd=\paperwidth, ht=0.09cm, dp=0pt]{progress}
-    \begin{tikzpicture}
-      \fill[dotoff] (0,0) rectangle (16,0.09);
-      \ifnum\inserttotalframenumber>0
-        \pgfmathsetmacro{\prog}{16*\insertframenumber/\inserttotalframenumber}
-        \fill[accent] (0,0) rectangle (\prog,0.09);
-      \fi
-    \end{tikzpicture}
-  \end{beamercolorbox}%
-  \vskip 2pt
-  \begin{beamercolorbox}[wd=\paperwidth, ht=2.4ex, dp=1.2ex, right]{footnum}
-    \usebeamerfont{footline}\color{gray!60}\insertframenumber\,/\,\inserttotalframenumber\hspace{0.8em}
-  \end{beamercolorbox}%
-}
-
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt}
-
-% ===================== CAIXA DE DESTAQUE =====================
-\newcommand{\notebox}[1]{%
-  \begin{center}
-  \begin{tabular}{@{}l@{\hspace{0.35cm}}p{0.82\textwidth}@{}}
-    \textcolor{accent}{\rule{2pt}{0.55cm}} & \itshape\small\color{white!88!black} #1
-  \end{tabular}
-  \end{center}%
-}
+% !TEX root = aula01.tex
+\input{templates/beamer.tex}
 
 \title{Introdução ao Estudo de Equações Diferenciais Ordinárias}
 \author{Saulo Henrique}
-\date{\today}
-
-\usefonttheme[onlymath]{serif}
 
 \begin{document}
 
@@ -89,17 +17,6 @@
   \end{center}
 \end{frame}
 
-% ===================== OBJETIVOS =====================
-\begin{frame}{Objetivos da Aula}
-\begin{itemize}
-  \item Compreender \textbf{o que é} uma Equação Diferencial Ordinária (EDO) e sua motivação
-  \item Dominar a \textbf{notação} e a \textbf{terminologia} fundamental
-  \item Classificar EDOs por \textbf{ordem}, \textbf{grau} e \textbf{linearidade}
-  \item Entender o conceito de \textbf{solução} de uma EDO
-  \item Reconhecer EDOs em \textbf{modelos matemáticos} reais
-\end{itemize}
-\end{frame}
-
 % ===================== 1. POR QUE ESTUDAR EDOs =====================
 \begin{frame}{1. Por que estudar EDOs?}
 As EDOs aparecem naturalmente quando descrevemos \textbf{como quantidades variam}. Alguns exemplos:
@@ -112,35 +29,164 @@ As EDOs aparecem naturalmente quando descrevemos \textbf{como quantidades variam
 \end{itemize}
 \end{frame}
 
-% ===================== 2. O QUE É UMA EDO =====================
-\begin{frame}{2. O que é uma EDO?}
-Uma \textbf{Equação Diferencial Ordinária (EDO)} é uma equação que envolve uma função desconhecida $y(x)$ e pelo menos uma de suas \textbf{derivadas} em relação à variável independente $x$.
+% ===================== 2. O QUE É UMA E.D? =====================
+
+\begin{frame}{2. O que é uma Equação Diferencial?}
+
+Em termos simples, uma Equação Diferencial é uma expressão matemática envolvendo uma igualdade, uma função incógnita (variável dependente) e suas derivadas, sendo essa função dependente de uma, duas ou mais variáveis independentes.
+
+\textbf{Exemplos:}
+
+\begin{enumerate}
+    \item $ \frac{dy}{dx}=3x^2 $
+
+    \item $ y''+4y'-5y=0 $
+
+    \item $ \frac{\partial u}{\partial t}=k\frac{\partial^2u}{\partial x^2} $
+
+    \item $ \frac{d^2y}{dx^2}+y=\sin(x) $
+\end{enumerate}
+
+\vspace{0.2cm}
+
+\textbf{Notações de derivada:} 
+$y'$, $f'(x)$, $\frac{dy}{dx}$, $D_x$, $u_x$, $\frac{\partial u}{\partial x}$.
+
+\end{frame}
+
+% ---------------------------------------------------
+
+\begin{frame}{2.1 Diferença entre E.D.O. e E.D.P.}
+
+A diferença principal entre uma \textbf{Equação Diferencial Ordinária (E.D.O.)} e uma \textbf{Equação Diferencial Parcial (E.D.P.)} está na quantidade de variáveis independentes envolvidas:
+
+\begin{itemize}
+
+    \item \textbf{Equação Diferencial Ordinária (E.D.O.):} 
+    envolve uma função incógnita que depende de \textbf{apenas uma variável independente}. 
+    As derivadas são derivadas ordinárias.
+
+    \item \textbf{Equação Diferencial Parcial (E.D.P.):}
+    envolve uma função incógnita que depende de \textbf{duas ou mais variáveis independentes}. 
+    As derivadas envolvidas são derivadas parciais.
+
+\end{itemize}
+
+\[
+\text{E.D.O: } \frac{dy}{dx}=3x^2
+\qquad\qquad
+\text{E.D.P: } \frac{\partial u}{\partial t}=k\frac{\partial^2 u}{\partial x^2}
+\]
+
+\end{frame}
+
+% ---------------------------------------------------
+
+\begin{frame}{2.2 O que é uma EDO?}
+
+Uma \textbf{Equação Diferencial Ordinária (EDO)} é uma equação que envolve uma função desconhecida $y(x)$ e pelo menos uma de suas derivadas em relação à variável independente $x$.
 
 \textbf{Forma geral implícita:}
 \[
-F\!\bigl(x,\, y,\, y',\, y'',\, \dots,\, y^{(n)}\bigr) = 0
+F\!\left(x,y,y',y'',\ldots,y^{(n)}\right)=0.
 \]
+
+\begin{itemize}
+    \item $x\in\mathbb{R}$: variável independente;
+    \item $y,y',\ldots,y^{(n)}\in\mathbb{R}^{m}$: variável dependente e suas derivadas;
+    \item \textbf{Ordem}: maior ordem de derivada presente ($n$);
+    \item \textbf{Dimensão}: número de variáveis dependentes ($m$).
+\end{itemize}
+
 \end{frame}
 
-\begin{frame}{2. O que é uma EDO? (cont.)}
-\textbf{Forma explícita de primeira ordem} (a mais comum):
+% ===================== 2.1 EXEMPLO: DECAIMENTO RADIOATIVO =====================
+\begin{frame}{2.1 Exemplo: Decaimento Radioativo}
+\begin{columns}[T]
+
+%--------------------------------------------------
+\begin{column}{0.42\textwidth}
+\begin{center}
+\includegraphics[width=\linewidth]{figuras/decaimento_radioativo.png}
+
+\vspace{0.2cm}
+\scriptsize
+Fonte: Elaborado pelo Autor (2026)
+\end{center}
+\end{column}
+
+%--------------------------------------------------
+\begin{column}{0.58\textwidth}
+
+A taxa de decaimento é proporcional à quantidade de núcleos radioativos presentes:
+
 \[
-\frac{dy}{dx} = f(x, y)
+\frac{dN}{dt}=-\lambda N,
 \]
 
-\notebox{O termo "ordinária" distingue essas equações das \textbf{Equações Diferenciais Parciais (EDP)}, onde a função desconhecida depende de mais de uma variável.}
+em que:
+
+\begin{itemize}
+    \item $N(t)$ é a quantidade de núcleos radioativos no instante $t$;
+    \item $\lambda>0$ é a constante de decaimento;
+    \item quanto maior $N(t)$, maior é a taxa de decaimento.
+\end{itemize}
+
+A solução da EDO é $N(t)=N_0e^{-\lambda t}$
+\end{column}
+
+\end{columns}
+\end{frame}
+
+% ===================== 2.2 LEI DE HOOKE =====================
+\begin{frame}{2.2 Exemplo: Lei de Hooke}
+\begin{columns}[T]
+
+%--------------------------------------------------
+\begin{column}{0.42\textwidth}
+\begin{center}
+\includegraphics[width=0.90\linewidth]{figuras/lei_hooke.png}
+
+\vspace{0.2cm}
+\scriptsize
+Fonte: Elaborado pelo Autor (2026)
+\end{center}
+\end{column}
+
+%--------------------------------------------------
+\begin{column}{0.58\textwidth}
+
+A força restauradora da mola é dada pela Lei de Hooke é $F=-kx$. Onde:
+
+\begin{itemize}
+    \item $k>0$ é a constante elástica;
+    \item $x(t)$ é o deslocamento da massa.
+\end{itemize}
+
+Pela Segunda Lei de Newton, temos:
+
+\[
+F=m\frac{d^{2}x}{dt^{2}}.
+\]
+
+Logo; $m\frac{d^{2}x}{dt^{2}}=-kx$
+
+obtendo uma EDO de segunda ordem que descreve o movimento oscilatório.
+
+\end{column}
+
+\end{columns}
 \end{frame}
 
 % ===================== 3. TERMINOLOGIA =====================
-\begin{frame}{3. Terminologia Fundamental}
-\textbf{\large 3.1 Ordem}
+\begin{frame}{3. Terminologia Fundamental: Ordem}
 
 \vspace{0.2cm}
 A \textbf{ordem} de uma EDO é a \textbf{maior derivada} que aparece na equação.
 
 \vspace{0.3cm}
 \begin{center}
-\small
+\large
 \begin{tabular}{lc}
 \textcolor{accent}{\textbf{Equação}} & \textcolor{accent}{\textbf{Ordem}} \\
 \hline
@@ -151,7 +197,7 @@ $y''' = \sin(x)$ & 3ª \\
 \end{center}
 \end{frame}
 
-\begin{frame}{3.2 Grau}
+\begin{frame}{3.2. Terminologia Fundamental: Grau}
 O \textbf{grau} de uma EDO é a \textbf{potência} em que a derivada de maior ordem aparece, desde que a equação seja \textbf{polinomial} nas derivadas (sem raízes nem frações envolvendo derivadas).
 
 \textbf{Exemplos:}
@@ -305,22 +351,14 @@ possui \textbf{solução única} em algum intervalo ao redor de $x_0$.
 \frac{dP}{dt} = r\,P, \quad P(0) = P_0
 \]
 Solução: $P(t) = P_0\,e^{rt}$.
-\end{frame}
 
-\begin{frame}{6. EDOs em Modelos Matemáticos (cont.)}
+\vspace{0.3cm}
+
 \textbf{Resfriamento de Newton:}
 \[
 \frac{dT}{dt} = -k\,(T - T_{\text{amb}})
 \]
 Descreve como a temperatura de um objeto se aproxima da temperatura ambiente.
-\end{frame}
-
-\begin{frame}{6. EDOs em Modelos Matemáticos (cont.)}
-\textbf{Decaimento radioativo:}
-\[
-\frac{dN}{dt} = -\lambda\,N
-\]
-$\lambda > 0$: constante de decaimento. Solução: $N(t) = N_0\,e^{-\lambda t}$.
 \end{frame}
 
 \begin{frame}{6. EDOs em Modelos Matemáticos (cont.)}
@@ -433,8 +471,8 @@ Agora que conhecemos os conceitos fundamentais das EDOs, estamos prontos para \t
 \small
 \begin{itemize}
   \item OLIVEIRA, Rafael Lima. \textit{Equações diferenciais ordinárias: métodos de resolução e aplicações.} Curitiba: Intersaberes, 2019.
+  \item IANA, Marcelo. \textit{Mestrado: Equações Diferenciais Ordinárias}. Instituto de Matemática Pura e Aplicada (IMPA), YouTube, 15 mar. 2022.  Disponível em: \url{https://www.youtube.com/watch?v=wVp10rmsch0}.  Acesso em: 21 jul. 2026.
   \item UNIVERSIDADE ESTADUAL DE LONDRINA (UEL). \textit{Equações diferenciais ordinárias.} Disponível em: \url{http://www.uel.br/projetos/matessencial/superior/pdfs/edo.pdf}.
-  \item UNIVERSIDADE FEDERAL DA BAHIA. \textit{Equações diferenciais ordinárias: Licenciatura Matemática UFBA.} Disponível em: \url{https://educapes.capes.gov.br/retrieve/166324/eBook_Equacoes_Diferenciais-Licenciatura_Matematica_UFBA.pdf}.
 \end{itemize}
 \end{frame}
 

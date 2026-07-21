@@ -1,0 +1,116 @@
+% ============================================================
+%  TEMPLATE BEAMER --- Tema "Dark Accent"
+% ============================================================
+%  Este arquivo concentra TODO o preâmbulo compartilhado entre
+%  as aulas (classe do documento, pacotes, cores, fontes,
+%  cabeçalho/rodapé dos slides e comandos auxiliares).
+%
+%  Como usar em um novo arquivo de aula:
+%
+%      \input{templates/beamer.tex}
+%
+%      \title{Título da Aula}
+%      \author
+%
+%      \begin{document}
+%        ... seus \begin{frame} ... \end{frame} ...
+%      \end{document}
+%
+%  IMPORTANTE: como este arquivo contém o \documentclass, ele
+%  precisa ser a PRIMEIRA linha do .tex da aula (nenhum outro
+%  comando pode vir antes do \input acima).
+%
+%  Compilar sempre a partir da pasta latex/ (para o caminho
+%  relativo "templates/beamer.tex" ser encontrado):
+%      cd latex && pdflatex aula01.tex
+% ============================================================
+
+% !TEX root = ../aula01.tex
+
+\documentclass[11pt, aspectratio=169, xcolor=table]{beamer}
+
+% ===================== PACOTES =====================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{newtxtext}
+\usepackage{newtxmath}
+\usepackage{tikz}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{bookmark}
+
+% Atalho para "d" reto de diferenciais: dx, dy -> \dd x, \dd y
+\newcommand{\dd}{\mathrm{d}}
+
+% ===================== REMOVE ELEMENTOS PADRÃO DO BEAMER =====================
+\setbeamertemplate{navigation symbols}{}
+
+% ===================== CORES =====================
+\definecolor{bgcolor}{RGB}{20, 20, 24}
+\definecolor{accent}{RGB}{214, 165, 113}
+\definecolor{dotoff}{RGB}{70, 70, 76}
+
+\setbeamercolor{background canvas}{bg=bgcolor}
+\setbeamercolor{normal text}{fg=white!92!black}
+\setbeamercolor{title}{fg=white}
+\setbeamercolor{frametitle}{fg=accent}
+\setbeamercolor{footline}{fg=gray!60}
+\setbeamercolor{itemize item}{fg=accent}
+\setbeamercolor{itemize subitem}{fg=accent!70!white}
+\setbeamercolor{progress}{bg=bgcolor}
+\setbeamercolor{footnum}{bg=bgcolor}
+\setbeamertemplate{itemize item}{\textbullet}
+
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamerfont{footline}{size=\tiny}
+
+\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
+
+% ===================== TÍTULO DO SLIDE =====================
+\setbeamertemplate{frametitle}{
+  \vspace{0.5cm}
+  \hspace{0.4cm}\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle\\
+  \vspace{0.12cm}
+  \hspace{0.4cm}\textcolor{accent}{\rule{2.5cm}{0.6pt}}
+}
+
+% ===================== RODAPÉ =====================
+\setbeamertemplate{footline}{%
+  \begin{beamercolorbox}[wd=\paperwidth, ht=0.09cm, dp=0pt]{progress}
+    \begin{tikzpicture}
+      \fill[dotoff] (0,0) rectangle (16,0.09);
+      \ifnum\inserttotalframenumber>0
+        \pgfmathsetmacro{\prog}{16*\insertframenumber/\inserttotalframenumber}
+        \fill[accent] (0,0) rectangle (\prog,0.09);
+      \fi
+    \end{tikzpicture}
+  \end{beamercolorbox}%
+  \vskip 2pt
+  \begin{beamercolorbox}[wd=\paperwidth, ht=2.4ex, dp=1.2ex, right]{footnum}
+    \usebeamerfont{footline}\color{gray!60}\insertframenumber\,/\,\inserttotalframenumber\hspace{0.8em}
+  \end{beamercolorbox}%
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% ===================== CUSTOMIZAÇÃO DE BLOCOS =====================
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamercolor{block title}{bg=dotoff, fg=accent}
+\setbeamercolor{block body}{bg=bgcolor!90!white, fg=white!92!black}
+
+\setbeamercolor{block title alerted}{bg=accent!60!black, fg=white}
+\setbeamercolor{block body alerted}{bg=bgcolor!95!white, fg=white!92!black}
+
+% ===================== CAIXA DE DESTAQUE =====================
+% Uso: \notebox{texto da observação}
+\newcommand{\notebox}[1]{%
+  \begin{center}
+  \begin{tabular}{@{}l@{\hspace{0.35cm}}p{0.82\textwidth}@{}}
+    \textcolor{accent}{\rule{2pt}{0.55cm}} & \itshape\small\color{white!88!black} #1
+  \end{tabular}
+  \end{center}%
+}
+
+\usefonttheme[onlymath]{serif}

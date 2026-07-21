@@ -1,90 +1,8 @@
-\documentclass[11pt, aspectratio=169, xcolor=table]{beamer}
-
-% ===================== PACOTES =====================
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage{newtxtext}
-\usepackage{newtxmath}
-\usepackage{tikz}
-\usepackage{amsmath, amssymb}
-\newcommand{\dd}{\mathrm{d}}
-\usepackage{booktabs}
-\usepackage{bookmark}
-
-% ===================== REMOVE ELEMENTOS PADRÃO DO BEAMERER =====================
-\setbeamertemplate{navigation symbols}{}
-
-% ===================== CORES E FONTES =====================
-\definecolor{bgcolor}{RGB}{20, 20, 24}
-\definecolor{accent}{RGB}{214, 165, 113}
-\definecolor{dotoff}{RGB}{70, 70, 76}
-
-\setbeamercolor{background canvas}{bg=bgcolor}
-\setbeamercolor{normal text}{fg=white!92!black}
-\setbeamercolor{title}{fg=white}
-\setbeamercolor{frametitle}{fg=accent}
-\setbeamercolor{footline}{fg=gray!60}
-\setbeamercolor{itemize item}{fg=accent}
-\setbeamercolor{itemize subitem}{fg=accent!70!white}
-\setbeamercolor{progress}{bg=bgcolor}
-\setbeamercolor{footnum}{bg=bgcolor}
-\setbeamertemplate{itemize item}{\textbullet}
-
-\setbeamerfont{frametitle}{series=\bfseries}
-\setbeamerfont{footline}{size=\tiny}
-
-\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
-
-% ===================== TÍTULO DO SLIDE =====================
-\setbeamertemplate{frametitle}{
-  \vspace{0.5cm}
-  \hspace{0.4cm}\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle\\
-  \vspace{0.12cm}
-  \hspace{0.4cm}\textcolor{accent}{\rule{2.5cm}{0.6pt}}
-}
-
-% ===================== RODAPÉ =====================
-\setbeamertemplate{footline}{%
-  \begin{beamercolorbox}[wd=\paperwidth, ht=0.09cm, dp=0pt]{progress}
-    \begin{tikzpicture}
-      \fill[dotoff] (0,0) rectangle (16,0.09);
-      \ifnum\inserttotalframenumber>0
-        \pgfmathsetmacro{\prog}{16*\insertframenumber/\inserttotalframenumber}
-        \fill[accent] (0,0) rectangle (\prog,0.09);
-      \fi
-    \end{tikzpicture}
-  \end{beamercolorbox}%
-  \vskip 2pt
-  \begin{beamercolorbox}[wd=\paperwidth, ht=2.4ex, dp=1.2ex, right]{footnum}
-    \usebeamerfont{footline}\color{gray!60}\insertframenumber\,/\,\inserttotalframenumber\hspace{0.8em}
-  \end{beamercolorbox}%
-}
-
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt}
-
-% ===================== CUSTOMIZAÇÃO DE BLOCOS =====================
-\setbeamertemplate{blocks}[rounded][shadow=false]
-\setbeamercolor{block title}{bg=dotoff, fg=accent}
-\setbeamercolor{block body}{bg=bgcolor!90!white, fg=white!92!black}
-
-\setbeamercolor{block title alerted}{bg=accent!60!black, fg=white}
-\setbeamercolor{block body alerted}{bg=bgcolor!95!white, fg=white!92!black}
-
-% ===================== CAIXA DE DESTAQUE =====================
-\newcommand{\notebox}[1]{%
-  \begin{center}
-  \begin{tabular}{@{}l@{\hspace{0.35cm}}p{0.82\textwidth}@{}}
-    \textcolor{accent}{\rule{2pt}{0.55cm}} & \itshape\small\color{white!88!black} #1
-  \end{tabular}
-  \end{center}%
-}
+% !TEX root = aula02.tex
+\input{templates/beamer.tex}
 
 \title{Introdução ao Estudo de Equações Diferenciais Ordinárias}
 \author{Saulo Henrique}
-
-\usefonttheme[onlymath]{serif}
 
 \begin{document}
 
@@ -408,6 +326,15 @@ L\frac{\dd i}{\dd t} + Ri = V,\quad i(0)=0
 \begin{itemize}
   \item[a)] $y' + y = y^2$
   \item[b)] $\displaystyle y' - \frac{y}{x} = \frac{y^3}{x^2},\quad x>0$
+\end{itemize}
+\end{frame}
+
+% ===================== REFERÊNCIAS =====================
+\begin{frame}{10. Referências}
+\small
+\begin{itemize}
+  \item OLIVEIRA, Rafael Lima. \textit{Equações diferenciais ordinárias: métodos de resolução e aplicações.} Curitiba: Intersaberes, 2019.
+  \item UNIVERSIDADE FEDERAL DA BAHIA. \textit{Equações diferenciais ordinárias: Licenciatura Matemática UFBA.} Disponível em: \url{https://educapes.capes.gov.br/retrieve/166324/eBook_Equacoes_Diferenciais-Licenciatura_Matematica_UFBA.pdf}.
 \end{itemize}
 \end{frame}
 
