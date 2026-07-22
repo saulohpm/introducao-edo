@@ -241,6 +241,7 @@ Para EDOs lineares da forma $a_n(x)y^{(n)} + \cdots + a_0(x)y = g(x)$:
 
 \begin{frame}{3.5 EDO Autônoma}
 Uma EDO é \textbf{autônoma} quando a variável independente $x$ não aparece explicitamente:
+
 \[
 \frac{dy}{dx} = f(y)
 \]
@@ -251,129 +252,57 @@ São especialmente importantes em modelos populacionais e físicos, pois o compo
 \end{frame}
 
 % ===================== 4. EXEMPLOS E CLASSIFICAÇÃO =====================
+
 \begin{frame}{4. Exemplos e Classificação}
-\textbf{1. EDO de 1ª ordem, linear, homogênea:}
-\[
-\frac{dy}{dx} + p(x)\,y = 0
-\]
 
-\textbf{2. EDO de 1ª ordem, linear, não homogênea:}
-\[
-\frac{dy}{dx} + p(x)\,y = q(x)
-\]
-\end{frame}
-
-\begin{frame}{4. Exemplos e Classificação (cont.)}
-\textbf{3. EDO de 2ª ordem, linear, homogênea:}
-\[
-y'' + a(x)\,y' + b(x)\,y = 0
-\]
-
-\textbf{4. EDO não linear --- Equação de Bernoulli:}
+\textbf{1. EDO não linear --- Equação de Bernoulli:}
 \[
 \frac{dy}{dx} + p(x)\,y = q(x)\,y^n, \quad n \neq 0, 1
 \]
 \textit{(não linear pois $y^n$ aparece com potência $n > 1$)}
-\end{frame}
 
-\begin{frame}{4. Exemplos e Classificação (cont.)}
-\textbf{5. EDO autônoma não linear (modelo logístico):}
+\textbf{2. EDO autônoma não linear (modelo logístico):}
 \[
 \frac{dP}{dt} = r\,P\!\left(1 - \frac{P}{K}\right)
 \]
 
-\textbf{6. EDO não linear com derivada elevada ao quadrado:}
-\[
-(y')^2 + y = \sin x
-\]
 \end{frame}
 
-% ===================== 5. O QUE É UMA SOLUÇÃO =====================
-\begin{frame}{5. O que é uma Solução?}
-Uma \textbf{solução} de uma EDO em um intervalo $I$ é uma função $\phi(x)$, definida e derivável em $I$, tal que ao substituí-la na equação, a igualdade é satisfeita \textbf{identicamente} em $I$.
+% ===================================================================
+% SEÇÃO 5 — DEFINIÇÃO DE SOLUÇÃO (VERSÃO REVISADA)
+% ===================================================================
 
-\textbf{Exemplo:} Verifique que $y = e^{2x}$ é solução de $y' - 2y = 0$.
+\begin{frame}{5. O que é uma Solução?}
+\textbf{Definição.} Seja $F\bigl(x, y, y', y'', \ldots, y^{(n)}\bigr) = 0$ uma EDO de ordem $n$. Uma \textbf{solução} dessa equação em um intervalo $I \subset \mathbb{R}$ é uma função $\phi(x)$, $n$ vezes derivável em $I$, tal que
+\[
+F\bigl(x,\, \phi(x),\, \phi'(x),\, \ldots,\, \phi^{(n)}(x)\bigr) = 0, \qquad \forall\, x \in I.
+\]
+
+Substituir $y = \phi(x)$ e suas derivadas na equação deve produzir uma \textbf{identidade} verdadeira para \emph{todo} $x$ em $I$, e não apenas em pontos isolados.
+
+\notebox{O intervalo $I$ faz parte da solução, não é um detalhe secundário: a mesma expressão algébrica pode resolver a EDO em um intervalo e sequer estar definida (ou deixar de satisfazer a equação) fora dele. Voltaremos a isso no item 5.4 e no exercício sobre a Lei de Torricelli.}
+\end{frame}
+
+\begin{frame}{5.1 Verificando (e Não Verificando) uma Solução}
+\textbf{Exemplo:} Verifique que $y = e^{2x}$ é solução de $y' - 2y = 0$ em $I = \mathbb{R}$.
 \begin{itemize}
   \item Calculamos: $y' = 2e^{2x}$
-  \item Substituímos: $2e^{2x} - 2e^{2x} = 0$ \checkmark
+  \item Substituímos: $2e^{2x} - 2e^{2x} = 0$ \checkmark, para todo $x \in \mathbb{R}$.
 \end{itemize}
-\end{frame}
-
-\begin{frame}{5.1 Família de Soluções}
-Em geral, resolver uma EDO de ordem $n$ produz uma \textbf{família de soluções} com $n$ constantes arbitrárias $C_1, C_2, \ldots, C_n$:
-\[
-y' = 2x \;\Longrightarrow\; y = x^2 + C
-\]
-Cada valor de $C$ corresponde a uma curva diferente --- chamamos esse conjunto de \textbf{solução geral}.
-\end{frame}
-
-\begin{frame}{5.2 Problema de Valor Inicial (PVI)}
-Para selecionar \textbf{uma solução específica} dentro da família, impomos \textbf{condições iniciais}: valores de $y$ (e possivelmente de $y'$, $y''$, \ldots) em um ponto $x_0$.
-
-\textbf{Exemplo:}
-\[
-y' = 2x, \quad y(1) = 3
-\]
-\begin{itemize}
-  \item Solução geral: $y = x^2 + C$
-  \item Usando $y(1) = 3$: $3 = 1 + C \Rightarrow C = 2$
-  \item \textbf{Solução particular:} $y = x^2 + 2$
-\end{itemize}
-\end{frame}
-
-\begin{frame}{5.3 Solução Explícita e Implícita}
-\begin{itemize}
-  \item \textbf{Explícita:} $y$ está isolada: $y = x^2 + 2$
-  \item \textbf{Implícita:} a solução é dada por uma relação $G(x, y) = 0$, sem que $y$ esteja isolada:
-  \[
-    x^2 + y^2 = 1
-  \]
-\end{itemize}
-Nem sempre é possível ou conveniente isolar $y$ --- soluções implícitas são perfeitamente válidas.
-\end{frame}
-
-\begin{frame}{5.4 Existência e Unicidade (Intuição)}
-Uma pergunta natural: \textbf{toda EDO tem solução? E ela é única?}
-
-O \textbf{Teorema de Picard--Lindelöf} garante que, sob condições de regularidade em $f(x,y)$, o PVI
-\[
-y' = f(x,y), \quad y(x_0) = y_0
-\]
-possui \textbf{solução única} em algum intervalo ao redor de $x_0$.
-
-\notebox{Não provaremos o teorema, mas é importante saber que nem toda EDO tem solução, e nem toda solução é única.}
-\end{frame}
-
-% ===================== 6. EDOs EM MODELOS MATEMÁTICOS =====================
-\begin{frame}{6. EDOs em Modelos Matemáticos}
-\textbf{Crescimento exponencial (Malthus, 1798):}
-\[
-\frac{dP}{dt} = r\,P, \quad P(0) = P_0
-\]
-Solução: $P(t) = P_0\,e^{rt}$.
 
 \vspace{0.3cm}
+\textbf{Contraexemplo:} $y = x^2$ \textbf{não} é solução de $y' - 2y = 0$. De fato, $y' - 2y = 2x - 2x^2$, expressão que só se anula em $x=0$ e $x=1$ --- ou seja, a igualdade vale em pontos isolados, não \emph{identicamente} em um intervalo.
 
-\textbf{Resfriamento de Newton:}
-\[
-\frac{dT}{dt} = -k\,(T - T_{\text{amb}})
-\]
-Descreve como a temperatura de um objeto se aproxima da temperatura ambiente.
+\notebox{Essa é a diferença essencial entre "satisfazer a equação em um ponto" (resolver uma equação algébrica pontual) e "ser solução de uma EDO" (satisfazer identicamente em todo um intervalo $I$).}
 \end{frame}
 
-\begin{frame}{6. EDOs em Modelos Matemáticos (cont.)}
-\textbf{Circuito RC (resistor-capacitor):}
-\[
-R\,\frac{dq}{dt} + \frac{q}{C} = V(t)
-\]
-Relaciona a carga $q(t)$ no capacitor com a tensão aplicada $V(t)$.
 
-\notebox{Perceba que \textbf{resolver} a EDO significa encontrar a função que descreve o fenômeno.}
-\end{frame}
+% ===================================================================
+% SEÇÃO 7 — EXERCÍCIOS DE FIXAÇÃO (REFORMULADA)
+% ===================================================================
 
-% ===================== 7. EXERCÍCIOS DE FIXAÇÃO =====================
-\begin{frame}{7. Exercícios de Fixação}
-1) Para cada EDO abaixo, identifique: ordem, grau (se definido), linear ou não linear, homogênea ou não (quando aplicável).
+\begin{frame}{6. Exercícios de Fixação}
+\textbf{Exercício 1.} Para cada EDO abaixo, identifique: ordem, grau (se definido), linear ou não linear, homogênea ou não (quando aplicável).
 \begin{itemize}
   \item[a)] $y'' + 5y' - 6y = \cos x$
   \item[b)] $\bigl(y'\bigr)^2 + y = x$
@@ -382,17 +311,20 @@ Relaciona a carga $q(t)$ no capacitor com a tensão aplicada $V(t)$.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{7. Exercícios de Fixação (cont.)}
-2) Verifique se as funções dadas são soluções das respectivas EDOs.
+\begin{frame}{6. Exercícios de Fixação}
+\textbf{Exercício 2.} Verifique se as funções dadas são soluções das respectivas EDOs.
 \begin{itemize}
   \item[a)] $y = 3e^{-x}$ é solução de $y' + y = 0$?
   \item[b)] $y = \sin(2x)$ é solução de $y'' + 4y = 0$?
-  \item[c)] $y = x\ln x$ é solução de $x^2 y'' - xy' + y = 0$?
 \end{itemize}
+
+\vspace{0.3cm}
+\textbf{Exercício 3.} Verifique que $y = x\ln x$ é solução de $x^2 y'' - xy' + y = 0$ para $x>0$. \\
+\notebox{Este é um exemplo de \textbf{equação de Euler-Cauchy} --- os coeficientes variáveis $x^2$, $x$ acompanham exatamente a ordem da derivada. Vale destacá-la separadamente: sua técnica de solução (mais adiante no curso) é bem diferente da usada em equações de coeficientes constantes.}
 \end{frame}
 
-\begin{frame}{7. Exercícios de Fixação (cont.)}
-3) Resolva o que cada item pede.
+\begin{frame}{6. Exercícios de Fixação}
+\textbf{Exercício 4.} Resolva o que cada item pede.
 \begin{itemize}
   \item[a)] Ache a solução geral de $y' = 3x^2$.
   \item[b)] Determine a constante usando $y(0) = 5$.
@@ -400,74 +332,22 @@ Relaciona a carga $q(t)$ no capacitor com a tensão aplicada $V(t)$.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{7. Exercícios de Fixação (cont.)}
-4) Considere o modelo de resfriamento de Newton:
+\begin{frame}{6. Exercícios de Fixação}
+\vspace{0.3cm}
+\textbf{Exercício 5.} Considere o modelo de resfriamento de Newton:
 \[
 \frac{dT}{dt} = -k\,(T - 20), \quad k > 0
 \]
-onde $T$ é a temperatura (em °C) e $t$ é o tempo (em minutos), sendo 20°C a temperatura ambiente.
+onde $T$ é a temperatura (°C) e $t$ o tempo (min), com 20°C como temperatura ambiente.
 \begin{itemize}
-  \item[a)] Que tipo de EDO é essa (ordem, linearidade)?
+  \item[a)] Classifique a EDO (ordem, linearidade).
   \item[b)] Interprete fisicamente o sinal negativo no lado direito.
-  \item[c)] Se a temperatura inicial é $T(0) = 80\,^\circ\text{C}$, qual seria o comportamento esperado de $T(t)$ quando $t \to \infty$?
+  \item[c)] Se $T(0) = 80\,^\circ\text{C}$, qual o comportamento esperado de $T(t)$ quando $t \to \infty$?
 \end{itemize}
 \end{frame}
 
-% ===================== 8. ROTEIRO DE RESOLUÇÕES =====================
-\begin{frame}{8. Roteiro de Resoluções}
-\textbf{Exercício 1:}
-
-\begin{center}
-\small
-\begin{tabular}{lccl}
-\textcolor{accent}{\textbf{EDO}} & \textcolor{accent}{\textbf{Ordem}} & \textcolor{accent}{\textbf{Grau}} & \textcolor{accent}{\textbf{Tipo}} \\
-\hline
-a) $y'' + 5y' - 6y = \cos x$ & 2ª & 1 & Linear, NH \\
-b) $(y')^2 + y = x$ & 1ª & 2 & Não linear \\
-c) $y''' - y'' + y = 0$ & 3ª & 1 & Linear, H \\
-d) $y' = y^2 - x$ & 1ª & 1 & Não linear \\
-\end{tabular}
-\end{center}
-\end{frame}
-
-\begin{frame}{8. Roteiro de Resoluções (cont.)}
-\textbf{Exercício 2a:} $y = 3e^{-x}$, EDO: $y' + y = 0$
-
-$y' = -3e^{-x} \;\Longrightarrow\; y' + y = -3e^{-x} + 3e^{-x} = 0$ \checkmark
-
-\vspace{0.4cm}
-\textbf{Exercício 2b:} $y = \sin(2x)$, EDO: $y'' + 4y = 0$
-
-$y' = 2\cos(2x),\; y'' = -4\sin(2x)$
-
-$y'' + 4y = -4\sin(2x) + 4\sin(2x) = 0$ \checkmark
-\end{frame}
-
-\begin{frame}{8. Roteiro de Resoluções (cont.)}
-\textbf{Exercício 3:}
-\begin{itemize}
-  \item[a)] $y' = 3x^2 \;\Longrightarrow\; y = x^3 + C$ (solução geral)
-  \item[b)] $y(0) = 5 \;\Longrightarrow\; 5 = 0 + C \;\Longrightarrow\; C = 5$ \\
-  Solução particular: $y = x^3 + 5$
-  \item[c)] Verificação: $y' = 3x^2$ \checkmark
-\end{itemize}
-\end{frame}
-
-% ===================== 9. CONEXÃO COM A PRÓXIMA AULA =====================
-\begin{frame}{9. Conexão com a Próxima Aula}
-Agora que conhecemos os conceitos fundamentais das EDOs, estamos prontos para \textbf{resolver} equações de primeira ordem.
-
-\textbf{Aula 02 --- Capítulo 2:} EDOs de Primeira Ordem
-\begin{itemize}
-  \item Método de \textbf{separação de variáveis}
-  \item Equações \textbf{lineares de 1ª ordem} e o fator integrante
-  \item Equações de \textbf{Bernoulli}
-  \item Aplicações: modelos de crescimento, decaimento, misturas
-\end{itemize}
-\end{frame}
-
-% ===================== 10. REFERÊNCIAS =====================
-\begin{frame}{10. Referências}
+% ===================== REFERÊNCIAS =====================
+\begin{frame}{7. Referências}
 \small
 \begin{itemize}
   \item OLIVEIRA, Rafael Lima. \textit{Equações diferenciais ordinárias: métodos de resolução e aplicações.} Curitiba: Intersaberes, 2019.

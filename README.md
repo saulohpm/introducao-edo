@@ -2,7 +2,7 @@
 
 Material de apoio para aulas introdutórias de Equações Diferenciais Ordinárias (EDO).
 
-Este repositório reúne slides desenvolvidos em Markdown, com versões em PDF para visualização e uso em aula.
+Este repositório reúne slides desenvolvidos em LaTeX, com versões em PDF para visualização e uso em aula.
 
 ---
 
