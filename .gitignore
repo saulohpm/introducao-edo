@@ -1,0 +1,66 @@
+# =========================
+# LaTeX
+# =========================
+
+# Arquivos auxiliares de compilação
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex
+*.synctex.gz
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.nav
+*.snm
+*.vrb
+*.dvi
+*.xdv
+
+# Glossário / índices
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.ist
+*.idx
+*.ilg
+*.ind
+
+# Beamer
+*.nav
+*.snm
+*.vrb
+
+# Arquivos temporários
+*.tmp
+*.bak
+*.swp
+*.swo
+*~
+
+# Compilação
+/build/
+/out/
+
+# VS Code
+.vscode/
+
+# TeXstudio
+*.synctex(busy)
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
