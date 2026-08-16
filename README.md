@@ -1,18 +1,1 @@
-# Introdução às Equações Diferenciais Ordinárias (EDO)
-
-Material de apoio para aulas introdutórias de Equações Diferenciais Ordinárias (EDO).
-
-Este repositório reúne slides desenvolvidos em LaTeX, com versões em PDF para visualização e uso em aula.
-
----
-
-## 📖 Conteúdo
-
-* Aula 01 — Introdução ao Estudo de Equações Diferenciais Ordinárias
-* Aula 02 — EDOs de 1ª ordem
-
----
-
-## 📌 Observações
-
-Os materiais estão em constante atualização e podem ser modificados ao longo do tempo.
+ወዳጄ ሆይ፣ አንተ ወፍ አይደለህም፤ ምን ክንፍ ቀርቶ፣ ምንቃርም ሆነ ላባ የለህም። ማንኛውም የስነ-ህይወት ምደባ ባለሙያ አንተን እንደ ወፍ እንደሚቆጥርህ አላስብም። ለምታሳልፈው አሳዛኝ ህይወት አዝንልሃለሁ፤ ነገር ግን የጓደኛዬን ህይወት ያለምንም ርህራሄ ስላጠፋህ፣ እንደ አንተ ላለ ፍጡር ምንም አይነት ርህራሄ ሊሰማኝ አልችልም። አመለካከትህን እንደገና እንደምትመረምርና ህይወትህን ወደ ትክክለኛው አቅጣጫ እንደምትመራ ተስፋ አደርጋለሁ።
