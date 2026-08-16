@@ -1,13 +1,18 @@
-ከዕለታት አንድ ቀን አንዲት ውብ
-ልዕልት ነበረች። ነገር ግን አስፈሪ የሆነ
-አስማት ተጭኖባት ነበር፤ ይህም አስማት
-ሊሰበር የሚችለው በእውነተኛ ፍቅር የመጀመሪያ መሳም ብቻ ነበር።
-እሷም እሳት በሚተፋ አስፈሪ ዘንዶ
-በሚጠበቅ ግንብ ውስጥ ታስራ ትኖር ነበር።
-ብዙ ጀግኖች ባላባቶች (knights) ከዚህ አስፈሪ እስር ቤት
-ሊያወጧት ሞክረው ነበር፤
-ነገር ግን ማንም አልተሳካለትም። እሷም በዘንዶው መኖሪያ ውስጥ፣
-በጣም ረጅሙ ግንብ አናት ላይ በሚገኘው ክፍል ውስጥ ሆና
-እውነተኛ ፍቅሯን
-እና የእውነተኛ ፍቅር የመጀመሪያ መሳምን ትጠብቅ ነበር። (ሳቅ)
-እንደዚያ ያለ ነገር መቼም አይሆንም። ምን አይነት... (የመጸዳጃ ቤት ውሃ መፍሰስ ድምፅ)
+# Introdução às Equações Diferenciais Ordinárias (EDO)
+
+Material de apoio para aulas introdutórias de Equações Diferenciais Ordinárias (EDO).
+
+Este repositório reúne slides desenvolvidos em LaTeX, com versões em PDF para visualização e uso em aula.
+
+---
+
+## 📖 Conteúdo
+
+* Aula 01 — Introdução ao Estudo de Equações Diferenciais Ordinárias
+* Aula 02 — EDOs de 1ª ordem
+
+---
+
+## 📌 Observações
+
+Os materiais estão em constante atualização e podem ser modificados ao longo do tempo.
