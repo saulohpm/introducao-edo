@@ -1,21 +1,15 @@
 % !TEX root = aula01.tex
-\input{templates/beamer.tex}
+\documentclass[11pt, aspectratio=169, xcolor=table]{beamer}
+\usepackage{templates/darkaccent}
 
-\title{Introdução ao Estudo de Equações Diferenciais Ordinárias}
-\author{Saulo Henrique}
+\title{Introdução ao Estudo de\\[4pt] Equações Diferenciais Ordinárias}
+\subtitle{Introdução a EDO (Aula 1)}
+\author{Prof. Saulo Henrique}
 
 \begin{document}
 
 % ===================== SLIDE DE TÍTULO =====================
-\begin{frame}[plain]
-  \begin{center}
-    \vspace{1.2cm}
-    {\Huge \textbf{\textcolor{white}{Introdução ao Estudo de}}}\\[4pt]
-    {\Huge \textbf{\textcolor{white}{Equações Diferenciais Ordinárias}}}\\[16pt]
-    {\large \textcolor{gray!80}{Curso: Introdução a EDO (Aula 1)}}\\[6pt]
-    {\normalsize \textcolor{accent}{Prof. Saulo Henrique}}
-  \end{center}
-\end{frame}
+\slidetitulo
 
 % ===================== 1. POR QUE ESTUDAR EDOs =====================
 \begin{frame}{1. Por que estudar EDOs?}
@@ -106,13 +100,11 @@ F\!\left(x,y,y',y'',\ldots,y^{(n)}\right)=0.
 
 %--------------------------------------------------
 \begin{column}{0.42\textwidth}
-\begin{center}
-\includegraphics[width=\linewidth]{figuras/decaimento_radioativo.png}
-
-\vspace{0.2cm}
-\scriptsize
-Fonte: Elaborado pelo Autor (2026)
-\end{center}
+\figuraabnt[
+  legenda={Decaimento radioativo},                % EDITAR
+  fonte={Elaborado pelo autor (2026).},
+  rotulo=fig:decaimento
+]{figuras/decaimento_radioativo.png}
 \end{column}
 
 %--------------------------------------------------
@@ -144,13 +136,12 @@ A solução da EDO é $N(t)=N_0e^{-\lambda t}$
 
 %--------------------------------------------------
 \begin{column}{0.42\textwidth}
-\begin{center}
-\includegraphics[width=0.90\linewidth]{figuras/lei_hooke.png}
-
-\vspace{0.2cm}
-\scriptsize
-Fonte: Elaborado pelo Autor (2026)
-\end{center}
+\figuraabnt[
+  legenda={Sistema massa-mola (Lei de Hooke)},    % EDITAR
+  fonte={Elaborado pelo autor (2026).},
+  rotulo=fig:hooke,
+  largura=0.90\linewidth
+]{figuras/lei_hooke.png}
 \end{column}
 
 %--------------------------------------------------

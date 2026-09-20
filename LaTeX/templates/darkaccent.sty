@@ -1,0 +1,272 @@
+% ============================================================
+%  darkaccent.sty --- Tema Beamer "Dark Accent"
+% ============================================================
+%  Concentra TODO o preâmbulo compartilhado entre as aulas:
+%  idioma, pacotes, cores, fontes, título/rodapé dos slides,
+%  blocos, comandos auxiliares e o padrão ABNT de figuras.
+%
+%  ESTRUTURA DE PASTAS (compile sempre a partir de latex/):
+%
+%      latex/
+%      |-- aula01.tex
+%      |-- aula02.tex
+%      |-- figuras/               <- imagens (.png, .pdf, .jpg)
+%      `-- templates/
+%          `-- darkaccent.sty     <- este arquivo
+%
+%  COMO USAR EM UMA NOVA AULA:
+%
+%      \documentclass[11pt, aspectratio=169, xcolor=table]{beamer}
+%      \usepackage{templates/darkaccent}
+%
+%      \title{Título da Aula}
+%      \author{Autor}
+%
+%      \begin{document}
+%        ... \begin{frame} ... \end{frame} ...
+%      \end{document}
+%
+%  IMPORTANTE:
+%   * As opções da classe (11pt, aspectratio, xcolor=table)
+%     precisam ficar no \documentclass da aula; um .sty não
+%     consegue defini-las. "xcolor=table" é necessário para
+%     \rowcolors funcionar nas tabelas.
+%   * Se mover este arquivo para a mesma pasta da aula, troque
+%     por \usepackage{darkaccent} (e o nome no \ProvidesPackage).
+%
+%  FIGURAS PADRÃO ABNT (ver seção no fim deste arquivo):
+%
+%      \figuraabnt[legenda={Título da figura},
+%                  fonte={Elaborado pelo autor (2026).},
+%                  rotulo=fig:exemplo,
+%                  largura=0.9\linewidth]{figuras/arquivo.png}
+%
+%      ... como mostra a \reffig{fig:exemplo} ...
+% ============================================================
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{templates/darkaccent}[2026/09/19 v1.0 Tema Beamer Dark Accent + figuras ABNT]
+
+\@ifclassloaded{beamer}{}{%
+  \PackageError{templates/darkaccent}%
+    {Este pacote so funciona com a classe beamer}%
+    {Use \string\documentclass{beamer} antes de \string\usepackage{templates/darkaccent}.}%
+}
+
+% ===================== IDIOMA =====================
+% Necessário para: hifenização em português, "Figura" (em vez de
+% "Figure") nas legendas, \today em português etc.
+\RequirePackage[T1]{fontenc}
+\RequirePackage[brazil]{babel}
+
+% ===================== PACOTES =====================
+\RequirePackage{lmodern}
+\RequirePackage{newtxtext}
+\RequirePackage{newtxmath}
+\RequirePackage{tikz}
+\RequirePackage{amsmath, amssymb}
+\RequirePackage{booktabs}
+\RequirePackage{bookmark}
+\RequirePackage{graphicx}
+\RequirePackage{caption}
+
+% Atalho para "d" reto de diferenciais: dx, dy -> \dd x, \dd y
+\newcommand{\dd}{\mathrm{d}}
+
+% ===================== REMOVE ELEMENTOS PADRÃO DO BEAMER =====================
+\setbeamertemplate{navigation symbols}{}
+
+% ===================== CORES =====================
+\definecolor{bgcolor}{RGB}{20, 20, 24}
+\definecolor{accent}{RGB}{214, 165, 113}
+\definecolor{dotoff}{RGB}{70, 70, 76}
+
+\setbeamercolor{background canvas}{bg=bgcolor}
+\setbeamercolor{normal text}{fg=white!92!black}
+\setbeamercolor{title}{fg=white}
+\setbeamercolor{frametitle}{fg=accent}
+\setbeamercolor{footline}{fg=gray!60}
+\setbeamercolor{itemize item}{fg=accent}
+\setbeamercolor{itemize subitem}{fg=accent!70!white}
+\setbeamercolor{itemize subsubitem}{fg=accent!70!white}
+% enumerate: mesma cor do itemize (o padrão do beamer é azul)
+\setbeamercolor{enumerate item}{fg=accent}
+\setbeamercolor{enumerate subitem}{fg=accent!70!white}
+\setbeamercolor{enumerate subsubitem}{fg=accent!70!white}
+\setbeamercolor{progress}{bg=bgcolor}
+\setbeamercolor{footnum}{bg=bgcolor}
+\setbeamertemplate{itemize item}{\textbullet}
+
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamerfont{footline}{size=\tiny}
+
+\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
+
+% ===================== TÍTULO DO SLIDE =====================
+\setbeamertemplate{frametitle}{
+  \vspace{0.5cm}
+  \hspace{0.4cm}\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle\\
+  \vspace{0.12cm}
+  \hspace{0.4cm}\textcolor{accent}{\rule{2.5cm}{0.6pt}}
+}
+
+% ===================== RODAPÉ =====================
+% Barra de progresso + contador "n / total".
+% A largura da barra acompanha \paperwidth (antes estava fixa em 16 cm).
+\setbeamertemplate{footline}{%
+  \begin{beamercolorbox}[wd=\paperwidth, ht=0.09cm, dp=0pt]{progress}
+    \begin{tikzpicture}
+      \fill[dotoff] (0,0) rectangle (\paperwidth,0.09cm);
+      \ifnum\inserttotalframenumber>0
+        \pgfmathsetlengthmacro{\prog}{\paperwidth*\insertframenumber/\inserttotalframenumber}
+        \fill[accent] (0,0) rectangle (\prog,0.09cm);
+      \fi
+    \end{tikzpicture}
+  \end{beamercolorbox}%
+  \vskip 2pt
+  \begin{beamercolorbox}[wd=\paperwidth, ht=2.4ex, dp=1.2ex, right]{footnum}
+    \usebeamerfont{footline}\color{gray!60}\insertframenumber\,/\,\inserttotalframenumber\hspace{0.8em}
+  \end{beamercolorbox}%
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% ===================== CUSTOMIZAÇÃO DE BLOCOS =====================
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamercolor{block title}{bg=dotoff, fg=accent}
+\setbeamercolor{block body}{bg=bgcolor!90!white, fg=white!92!black}
+
+\setbeamercolor{block title alerted}{bg=accent!60!black, fg=white}
+\setbeamercolor{block body alerted}{bg=bgcolor!95!white, fg=white!92!black}
+
+% ===================== CAIXA DE DESTAQUE =====================
+% Uso: \notebox{texto da observação}
+% (usa \linewidth em vez de \textwidth para também caber dentro de colunas)
+\newcommand{\notebox}[1]{%
+  \begin{center}
+  \begin{tabular}{@{}l@{\hspace{0.35cm}}p{0.82\linewidth}@{}}
+    \textcolor{accent}{\rule{2pt}{0.55cm}} & \itshape\small\color{white!88!black} #1
+  \end{tabular}
+  \end{center}%
+}
+
+\usefonttheme[onlymath]{serif}
+
+% ===================== SLIDE DE TÍTULO =====================
+% Uso (no preâmbulo da aula):
+%     \title{Primeira linha\\[4pt] Segunda linha}
+%     \subtitle{Curso: Nome do curso (Aula 1)}   % opcional
+%     \author{Prof. Fulano de Tal}               % opcional
+% e, logo após \begin{document}:
+%     \slidetitulo
+% Subtítulo e autor vazios (ou ausentes) simplesmente não aparecem.
+\newcommand{\slidetitulo}{%
+  \begin{frame}[plain]
+    \begin{center}
+      \vspace{1.2cm}
+      {\Huge\bfseries\textcolor{white}{\inserttitle}}\\[16pt]
+      % só imprime subtítulo/autor se tiverem conteúdo (largura > 0)
+      \sbox\@tempboxa{\insertsubtitle}%
+      \ifdim\wd\@tempboxa>\z@
+        {\large\textcolor{gray!80}{\insertsubtitle}}\\[6pt]
+      \fi
+      \sbox\@tempboxa{\insertauthor}%
+      \ifdim\wd\@tempboxa>\z@
+        {\normalsize\textcolor{accent}{\insertauthor}}
+      \fi
+    \end{center}
+  \end{frame}%
+}
+
+
+% ============================================================
+%  FIGURAS NO PADRÃO ABNT (NBR 14724)
+% ============================================================
+%  Formato produzido (numeração automática pelo contador figure):
+%
+%        Figura 1 – Título da figura         <- acima da imagem
+%        [ imagem ]
+%        Fonte: Elaborado pelo autor (2026). <- abaixo da imagem
+%        Nota: observação opcional.          <- abaixo (opcional)
+%
+%  Comando:
+%      \figuraabnt[chaves]{caminho/da/imagem}
+%
+%  Chaves (todas opcionais):
+%      legenda = título da figura (o que você edita depois)
+%      fonte   = origem; padrão: \fontepadrao
+%      nota    = nota opcional, impressa depois da fonte
+%      rotulo  = rótulo para referência cruzada (ex.: fig:hooke)
+%      largura = largura da imagem; padrão: \linewidth
+%      extra   = opções extras do \includegraphics
+%                (ex.: extra={height=4cm,keepaspectratio})
+%
+%  Chaves com vírgula no valor precisam de chaves: legenda={A, B}.
+%
+%  Referência no texto:  \reffig{fig:hooke}  ->  "Figura 2"
+%
+%  Se `legenda` não for informada, aparece "[definir legenda]" no
+%  slide e um aviso é emitido no log (procure por "sem legenda").
+% ============================================================
+
+% --- Fonte padrão (mude no preâmbulo da aula com \renewcommand) ---
+\newcommand{\fontepadrao}{Elaborado pelo autor (\the\year).}
+
+% --- Tamanho único para título, fonte e nota (ABNT: mesmo corpo) ---
+\newcommand{\abntfigsize}{\scriptsize}
+\DeclareCaptionFont{abntfig}{\abntfigsize}
+
+% --- Aparência da legenda: "Figura 1 – Título", acima, centralizada ---
+% labelformat=simple força "Figura 1" (o beamer, por padrão, omite o número)
+\captionsetup[figure]{%
+  labelformat=simple,
+  labelsep=endash,
+  font=abntfig,
+  labelfont=abntfig,
+  justification=centering,
+  singlelinecheck=false,
+  position=top,
+  skip=4pt
+}
+
+% --- Chaves ---
+\pgfkeys{
+  /abntfig/.is family,
+  /abntfig/legenda/.store in=\abntfig@legenda,
+  /abntfig/fonte/.store in=\abntfig@fonte,
+  /abntfig/nota/.store in=\abntfig@nota,
+  /abntfig/rotulo/.store in=\abntfig@rotulo,
+  /abntfig/largura/.store in=\abntfig@largura,
+  /abntfig/extra/.store in=\abntfig@extra,
+}
+
+\newcommand{\figuraabnt}[2][]{%
+  \begingroup
+    \pgfkeys{/abntfig/.cd,%
+      legenda=, fonte=\fontepadrao, nota=, rotulo=,%
+      largura=\linewidth, extra=,%
+      #1}%
+    \ifx\abntfig@legenda\@empty
+      \PackageWarning{templates/darkaccent}{Figura '#2' sem legenda definida}%
+      \def\abntfig@legenda{[definir legenda]}%
+    \fi
+    % o keyval do graphicx não expande macros: monta as opções antes
+    \edef\abntfig@opcoes{width=\abntfig@largura
+      \ifx\abntfig@extra\@empty\else,\abntfig@extra\fi}%
+    \begin{figure}
+      \centering
+      \caption{\abntfig@legenda}%
+      \ifx\abntfig@rotulo\@empty\else\label{\abntfig@rotulo}\fi
+      \expandafter\includegraphics\expandafter[\abntfig@opcoes]{#2}\par
+      \vspace{2pt}%
+      {\abntfigsize Fonte: \abntfig@fonte\par}%
+      \ifx\abntfig@nota\@empty\else
+        {\abntfigsize Nota: \abntfig@nota\par}%
+      \fi
+    \end{figure}%
+  \endgroup
+}
+
+% --- Referência cruzada: \reffig{fig:x} -> "Figura 1" (com link) ---
+\newcommand{\reffig}[1]{\figurename~\ref{#1}}
